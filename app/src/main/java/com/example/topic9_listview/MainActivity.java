@@ -39,13 +39,41 @@ public class MainActivity extends ListActivity {
             super(MainActivity.this, R.layout.row, R.id.textView_name, items);
         }
 
+        //HOLDER
         public View getView(int position, View convertView, ViewGroup parent) {
+            View row=super.getView(position, convertView, parent);
+            ViewHolder holder = (ViewHolder)row.getTag();
+
+            if(holder == null){
+                holder = new ViewHolder(row);
+                row.setTag(holder);
+            }
+
+            if (items[position].length()>4) {
+                holder.icon.setImageResource(R.drawable.ic_baseline_clear_24);
+            }
+            else {
+                holder.icon.setImageResource(R.drawable.ic_baseline_check_24);
+            }
+            return(row);
+        }
+
+        public View getViewOld(int position, View convertView, ViewGroup parent) {
             //View row=super.getView(position, convertView, parent);
             //ImageView icon=(ImageView)row.findViewById(R.id.imageView_poster);
 
             //with inflater
-            LayoutInflater inflater = getLayoutInflater();
-            View row = inflater.inflate(R.layout.row, parent, false);
+            //LayoutInflater inflater = getLayoutInflater();
+            //View row = inflater.inflate(R.layout.row, parent, false);
+
+            //with convertview --> si la vista no es null no se crea de nuevo, solo se modifica
+            View row = convertView;
+
+            if(row == null){
+                LayoutInflater inflater = getLayoutInflater();
+                row = inflater.inflate(R.layout.row, parent, false);
+            }
+
             TextView label = (TextView) row.findViewById(R.id.textView_name);
             label.setText(items[position]);
             ImageView icon=(ImageView)row.findViewById(R.id.imageView_poster);
