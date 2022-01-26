@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,7 +24,7 @@ public class MainActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setListAdapter(new ArrayAdapter<String>(this, R.layout.row, R.id.textView_name , items));
+        setListAdapter(new IconicAdapter());
         selection=(TextView)findViewById(R.id.selection);
     }
 
@@ -30,5 +32,23 @@ public class MainActivity extends ListActivity {
         selection.setText(items[position]);
     }
 
+    //// CLASS ICONIC ADAPTER
+    class IconicAdapter extends ArrayAdapter<String> {
+        IconicAdapter() {
+            super(MainActivity.this, R.layout.row, R.id.textView_name, items);
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View row=super.getView(position, convertView, parent);
+            ImageView icon=(ImageView)row.findViewById(R.id.imageView_poster);
+            if (items[position].length()>4) {
+                icon.setImageResource(R.drawable.ic_baseline_clear_24);
+            }
+            else {
+                icon.setImageResource(R.drawable.ic_baseline_check_24);
+            }
+            return(row);
+        }
+    }
 
 }
