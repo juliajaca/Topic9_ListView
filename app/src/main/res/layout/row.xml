@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <RelativeLayout android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:src="@drawable/ic_baseline_check_24"
+        android:id="@+id/imageView_poster"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/textView_name"
+        android:textSize="25pt"
+        android:layout_toRightOf="@id/imageView_poster"/>
+</RelativeLayout>
