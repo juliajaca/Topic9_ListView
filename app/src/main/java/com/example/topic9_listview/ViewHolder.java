@@ -2,11 +2,12 @@ package com.example.topic9_listview;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 
 public class ViewHolder {
-    ImageView icon = null;
+    RatingBar rate = null;
 
     ViewHolder(View base){
-        this.icon = (ImageView) base.findViewById(R.id.imageView_poster);
+        this.rate = (RatingBar) base.findViewById(R.id.rate);
     }
 }
